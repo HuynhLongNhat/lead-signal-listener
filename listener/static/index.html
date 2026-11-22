@@ -504,6 +504,11 @@ const I18N = {
     ago_h: n => `${n} giờ trước`,
     ago_d: n => `${n} ngày trước`,
     agent_prompt: (dir, url) => `Đọc ${dir}/AGENT_SETUP.md và thiết lập các bộ lọc phát hiện nỗi đau cho thị trường Việt Nam tại ${url}. Không gọi API có phí khi chưa được đồng ý.`,
+    token_desc: 'Lấy token tại <a href="https://treg.to" target="_blank" rel="noopener">treg.to</a>. Token được lưu cục bộ trong <code>data/config.json</code>, hoặc thông qua biến môi trường <code>TREG_TOKEN</code>. Không cần token khi dùng Hacker News hoặc RSS.',
+    budget_desc: 'Chi phí lấy theo header <code>X-Treg-Cost-Micro</code> của Treg. Truy vấn lặp lại trong một giờ có thể được xử lý như một lượt đã thực hiện.',
+    lbl_group_urls: "URL nhóm Facebook công khai · mỗi dòng một URL",
+    custom_desc: 'Nguồn tùy chỉnh thông qua Treg; <code>{q}</code> là từ khóa và <code>{days}</code> là số ngày. Có thể cấu hình <code>params</code>, <code>fields</code>, <code>items_path</code> và <code>url_template</code>.',
+    eb_token: "Treg API token",
   },
   en: {
     tab_leads: "Leads", tab_sources: "Listeners", tab_settings: "Settings",
