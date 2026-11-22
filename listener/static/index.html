@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -221,6 +221,7 @@
     <button data-tab="settings" aria-pressed="false" data-i18n="tab_settings"></button>
   </div>
   <div class="lang" aria-label="Language">
+    <button data-lang="vi">VI</button>
     <button data-lang="en">EN</button>
     <button data-lang="zh">中文</button>
   </div>
@@ -372,6 +373,143 @@
 
 <script>
 const I18N = {
+  vi: {
+    tab_leads: "Khách hàng",
+    tab_sources: "Nguồn theo dõi",
+    tab_settings: "Cài đặt",
+    h_leads: "Tín hiệu nỗi đau",
+    h_sources: "Nguồn theo dõi",
+    h_settings: "Cài đặt",
+    k_sources: "nguồn · từ khóa · quy tắc",
+    k_settings: "một token · hơn 3.800 nguồn",
+    run_now: "Tìm kiếm ngay",
+    refresh: "Làm mới",
+    save: "Lưu",
+    save_config: "Lưu",
+    verify: "Xác minh",
+    saved: "Đã lưu",
+    enter_token: "Hãy nhập token",
+    verifying: "Đang xác minh…",
+    all: "Tất cả",
+    st_new: "Mới · cần xem",
+    st_qualified: "Đạt yêu cầu",
+    st_contacted: "Đã liên hệ",
+    st_replied: "Đã phản hồi",
+    st_ignored: "Bỏ qua",
+    focus_title: "Bạn đang tìm khách hàng nào?",
+    focus_eb: "mục tiêu",
+    focus_hint: "Mô tả người hoặc doanh nghiệp bạn muốn tìm; nội dung hiển thị trên trang lead.",
+    focus_ph: "Ví dụ: cửa hàng đang gặp khó khăn trong chăm sóc khách hàng",
+    export_csv: "Xuất CSV",
+    export_json: "Xuất JSON",
+    last_log: "Nhật ký gần nhất ▾",
+    no_log: "Chưa có lượt chạy",
+    intro_none: "Chưa có nguồn theo dõi nào hoạt động. Mở Nguồn theo dõi và thêm từ khóa.",
+    search_ph: "Tìm trong tiêu đề, nội dung, tác giả rồi nhấn Enter",
+    sources_intro: "Mỗi dòng một từ khóa. Nguồn Treg có thể tính tiền theo số trang và lượt gọi API.",
+    rules_title: "Quy tắc chấm điểm",
+    rules_desc: "Đặt trọng số cho nỗi đau, ý định mua và tín hiệu loại trừ bằng JSON.",
+    save_rules: "Lưu quy tắc",
+    rescore: "Chấm điểm lại",
+    settings_intro: "Các nguồn Treg cần token và có thể tính phí. Hacker News và RSS không cần token.",
+    token_title: "Treg token",
+    get_token: "Lấy token tại treg.to ↗",
+    budget_title: "Lượt chạy và ngân sách",
+    f_lookback: "Khoảng thời gian (ngày)",
+    f_percall: "Giới hạn mỗi lần gọi (USD)",
+    f_perrun: "Ngân sách mỗi lượt (USD)",
+    f_schedule: "Tự chạy mỗi (giờ, 0 = tắt)",
+    f_minkeep: "Loại lead có điểm dưới",
+    tok_env: "Dùng token từ biến môi trường",
+    tok_file: "Đã lưu · ",
+    tok_none: "Chưa có token · chỉ chạy nguồn miễn phí",
+    keywords: "từ khóa",
+    pages_label: "số trang mỗi từ khóa (tính phí mỗi trang)",
+    location: "địa điểm",
+    region: "khu vực",
+    src_linkedin_posts: "Bài viết LinkedIn",
+    src_facebook_posts: "Bài viết Facebook",
+    src_facebook_groups: "Nhóm Facebook",
+    src_instagram_hashtags: "Hashtag Instagram",
+    src_instagram_reels: "Instagram Reels",
+    src_linkedin_jobs: "Tuyển dụng LinkedIn",
+    src_funding: "Tín hiệu gọi vốn",
+    lb_scope: "phạm vi",
+    scope_all: "Tất cả lead",
+    scope_last: "Mới từ lượt chạy gần nhất",
+    lb_sort: "sắp xếp",
+    sort_score: "Điểm cao nhất",
+    sort_recent: "Mới nhất",
+    s_last: "mới lần chạy gần nhất",
+    s_total: "Tổng lead",
+    s_qualified: "Đạt yêu cầu",
+    s_contacted: "Đã liên hệ",
+    s_replied: "Đã phản hồi",
+    s_spent: "Chi phí (30 ngày)",
+    s_calls: "Lượt gọi Treg",
+    s_new: "Cần xem",
+    s_ignored: "Đã bỏ qua",
+    new_badge: "MỚI",
+    expand: "Bấm để mở rộng",
+    note_ph: "Ghi chú",
+    note_add: "+ Thêm ghi chú",
+    note_title: "Ghi chú",
+    note_save: "Lưu",
+    note_cancel: "Hủy",
+    note_hint: "Ctrl+Enter để lưu · Esc để đóng",
+    more: "Xem thêm",
+    empty_t: "Chưa có tín hiệu",
+    empty_d: "Bật nguồn miễn phí và bấm Tìm kiếm ngay; nguồn Treg cần token.",
+    rss_desc: "Nguồn RSS/Atom miễn phí: Google Alerts, blog, diễn đàn, trang tuyển dụng.",
+    rss_feeds: "URL RSS · mỗi dòng một URL",
+    rss_keywords: "Từ khóa lọc · tùy chọn",
+    catalog_desc: "Tìm các nguồn tùy chỉnh như YouTube, TikTok và Google News trong danh mục Treg.",
+    catalog_ph: "Ví dụ: youtube search videos",
+    search: "Tìm kiếm",
+    searching: "Đang tìm…",
+    no_results: "Không có kết quả",
+    custom_title: "Nguồn tùy chỉnh",
+    added: "Đã thêm — kiểm tra rồi lưu",
+    lb_status: "trạng thái",
+    lb_source: "nguồn",
+    lb_persona: "phân khúc",
+    lb_min: "điểm tối thiểu",
+    lb_search: "tìm kiếm",
+    free: "miễn phí",
+    per_call: "/ lượt gọi",
+    per_result: "/ kết quả",
+    catalog_title: "Danh mục Treg",
+    endpoints: "hơn 3.800 nguồn",
+    open: "mở bài ↗",
+    q_prefix: "từ khóa: ",
+    running: "đang chạy…",
+    next_run: "lần chạy tiếp theo · ",
+    oss: "mã nguồn mở · MIT",
+    agent_title: "Không biết cấu hình thế nào?",
+    agent_desc: "Có thể nhờ trợ lý AI thiết lập từ khóa và quy tắc chấm điểm.",
+    agent_btn: "Sao chép hướng dẫn",
+    agent_copied: "Đã sao chép",
+    agent_failed: "Không sao chép được, nhấn Ctrl+C",
+    list_and: " và ",
+    json_err: "JSON không hợp lệ: ",
+    rules_saved: "Đã lưu quy tắc",
+    intro_focus: f => `${f} Xem xét lead theo điểm.`,
+    intro_auto: (src, kws, more) => `Đang theo dõi ${src} với ${kws}${more ? ` và ${more} từ khóa khác` : ""}.`,
+    intro_src_only: src => `Đang theo dõi ${src}.`,
+    quote: k => `“${k}”`,
+    kicker: (n, d) => `${n} nguồn hoạt động · ${d} ngày`,
+    rescored: n => `Đã chấm lại ${n} lead`,
+    count: (n, t) => `${n} / ${t} tín hiệu`,
+    seen: x => `phát hiện ${x}`,
+    ago_h: n => `${n} giờ trước`,
+    ago_d: n => `${n} ngày trước`,
+    agent_prompt: (dir, url) => `Đọc ${dir}/AGENT_SETUP.md và thiết lập các bộ lọc phát hiện nỗi đau cho thị trường Việt Nam tại ${url}. Không gọi API có phí khi chưa được đồng ý.`,
+    token_desc: 'Lấy token tại <a href="https://treg.to" target="_blank" rel="noopener">treg.to</a>. Token được lưu cục bộ trong <code>data/config.json</code>, hoặc thông qua biến môi trường <code>TREG_TOKEN</code>. Không cần token khi dùng Hacker News hoặc RSS.',
+    budget_desc: 'Chi phí lấy theo header <code>X-Treg-Cost-Micro</code> của Treg. Truy vấn lặp lại trong một giờ có thể được xử lý như một lượt đã thực hiện.',
+    lbl_group_urls: "URL nhóm Facebook công khai · mỗi dòng một URL",
+    custom_desc: 'Nguồn tùy chỉnh thông qua Treg; <code>{q}</code> là từ khóa và <code>{days}</code> là số ngày. Có thể cấu hình <code>params</code>, <code>fields</code>, <code>items_path</code> và <code>url_template</code>.',
+    eb_token: "Treg API token",
+  },
   en: {
     tab_leads: "Leads", tab_sources: "Listeners", tab_settings: "Settings",
     intro_focus: f => `${f} Review and follow up by score.`,
@@ -491,7 +629,7 @@ const I18N = {
     open: "打开原文 ↗", q_prefix: "关键词：", ago_h: n => `${n} 小时前`, ago_d: n => `${n} 天前`,
   },
 };
-let LANG = localStorage.getItem("sl_lang") || "en";
+let LANG = localStorage.getItem("sl_lang") || "vi";
 const T = (k, ...a) => { const v = (I18N[LANG] || I18N.en)[k] ?? I18N.en[k] ?? k; return typeof v === "function" ? v(...a) : v; };
 
 const SRC_META = {
@@ -512,7 +650,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt
 const safeUrl = u => /^https?:\/\//i.test(u || "") ? esc(u) : "#";
 
 function applyI18n() {
-  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : (LANG === "vi" ? "vi" : "en");
   document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = T(el.dataset.i18n));
   document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = T(el.dataset.i18nHtml));  // trusted static strings only
   document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = T(el.dataset.i18nPh));
@@ -849,7 +987,7 @@ function renderStatus() {
     ["s_last", st.last_run ? st.last_run.new : 0, true], ["s_total", st.total], ["s_spent", "$" + st.spent_30d_usd.toFixed(3)], ["s_calls", st.calls]
   ].map(([k, v, a]) => `<div class="stat${a ? " accent" : ""}"><b>${v}</b><span>${T(k)}</span></div>`).join("");
   $("runBtn").disabled = s.running;
-  $("runState").textContent = s.running ? T("running") : (s.next_run ? T("next_run") + new Date(s.next_run * 1000).toLocaleString(LANG === "zh" ? "zh-CN" : "en-US") : "python app.py --run-once");
+  $("runState").textContent = s.running ? T("running") : (s.next_run ? T("next_run") + new Date(s.next_run * 1000).toLocaleString(LANG === "zh" ? "zh-CN" : (LANG === "vi" ? "vi-VN" : "en-US")) : "python app.py --run-once");
   if (s.last_log && s.last_log.length) renderLog(s.last_log.join("\n"));
   else renderLog(s.runs && s.runs[0] ? s.runs[0].log : "");
 }

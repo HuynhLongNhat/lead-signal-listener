@@ -23,21 +23,21 @@ PAIN_QUERIES = [
 DEFAULT_CONFIG = {
     "treg_token": "",
     "treg_org": "",
-    "lang": "en",
+    "lang": "vi",
     # One sentence describing who you're looking for; shown on the Leads page.
     "focus": "",
     "lookback_days": 7,
-    "max_cost_per_call_usd": 0.05,
-    "max_cost_per_run_usd": 1.0,
+    "max_cost_per_call_usd": 0.01,
+    "max_cost_per_run_usd": 0.10,
     "schedule_hours": 0,
     "min_score_to_keep": 10,
     "sources": {
         "hn": {"enabled": True, "queries": ["AI Overviews", "ChatGPT SEO", "LLM visibility", "AI search traffic"]},
         # max_pages: pages per keyword per run (each page is one paid call). Reddit pages hold ~7 posts, X ~20.
-        "reddit": {"enabled": True, "max_pages": 3, "queries": PAIN_QUERIES},
-        "x": {"enabled": True, "max_pages": 3, "queries": PAIN_QUERIES[:5]},
+        "reddit": {"enabled": False, "max_pages": 3, "queries": PAIN_QUERIES},
+        "x": {"enabled": False, "max_pages": 3, "queries": PAIN_QUERIES[:5]},
         "linkedin_posts": {"enabled": False, "max_pages": 2, "queries": PAIN_QUERIES[:4]},
-        "linkedin_jobs": {"enabled": True, "max_pages": 2, "location": "United States",
+        "linkedin_jobs": {"enabled": False, "max_pages": 2, "location": "United States",
                           "queries": ["Head of Growth", "SEO Manager", "Growth Marketing Manager",
                                       "Content Marketing Manager"]},
         "funding": {"enabled": False, "region": "US"},
