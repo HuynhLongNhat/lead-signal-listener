@@ -217,6 +217,7 @@
   <div class="brand"><span class="glyph">L</span>Lead Signal Listener <small>/ powered by <a href="https://treg.to" target="_blank" rel="noopener">treg.to</a></small></div>
   <div class="seg" role="tablist">
     <button data-tab="leads" aria-pressed="true" data-i18n="tab_leads"></button>
+    <button data-tab="market" aria-pressed="false" data-i18n="tab_market"></button>
     <button data-tab="sources" aria-pressed="false" data-i18n="tab_sources"></button>
     <button data-tab="settings" aria-pressed="false" data-i18n="tab_settings"></button>
   </div>
@@ -264,6 +265,44 @@
       </div>
       <div id="rows"></div>
       <div class="pager"><span class="count" id="countInfo"></span><button class="btn ghost hidden" id="moreBtn" data-i18n="more"></button></div>
+    </div>
+  </section>
+
+  <!-- MARKET INTELLIGENCE (separate from paid Treg listening) -->
+  <section id="tab-market" class="hidden">
+    <div class="hero"><div>
+      <span class="kicker" data-i18n="tab_market"></span>
+      <h1 data-i18n="mi_title"></h1><p data-i18n="mi_hint"></p>
+    </div></div>
+    <div class="card">
+      <div class="fields">
+        <div><label data-i18n="mi_industry"></label><input id="miIndustry" type="text" maxlength="120" placeholder="F&B, marketing, bán lẻ..." style="width:100%"></div>
+        <div><label data-i18n="mi_region"></label><input id="miRegion" type="text" maxlength="120" placeholder="Quy Nhơn, Việt Nam" style="width:100%"></div>
+        <div><label data-i18n="mi_pain"></label><input id="miPain" type="text" maxlength="120" placeholder="quá tải tin nhắn..." style="width:100%"></div>
+      </div>
+      <div class="row" style="flex-wrap:wrap; gap:14px; margin:16px 0">
+        <label><input id="miWeb" type="checkbox" checked> <span data-i18n="mi_web"></span></label>
+        <label><input id="miListener" type="checkbox" checked> <span data-i18n="mi_listener"></span></label>
+        <label><input id="miExtract" type="checkbox" checked> <span data-i18n="mi_extract"></span></label>
+      </div>
+      <p class="desc" data-i18n="mi_config"></p>
+      <button class="btn" id="miRun" data-i18n="mi_run"></button>
+      <span id="miRunMessage" role="status" style="margin-left:12px"></span>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <h2 data-i18n="mi_status"></h2>
+        <span id="miStage">Chưa chạy</span>
+      </div>
+      <p id="miProgress">—</p>
+      <pre id="miErrors" style="white-space:pre-wrap;color:var(--red);font-size:12px"></pre>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between; gap:10px">
+        <h2 data-i18n="mi_report"></h2><button class="btn ghost" id="miRefresh" data-i18n="mi_refresh"></button>
+      </div>
+      <p class="desc" data-i18n="mi_warning"></p>
+      <div id="miResults"></div>
     </div>
   </section>
 
@@ -374,6 +413,23 @@
 <script>
 const I18N = {
   vi: {
+    tab_market: "Nghiên cứu thị trường",
+    mi_title: "Nghiên cứu nỗi đau và cơ hội",
+    mi_hint: "Nghiên cứu từ web và dữ liệu Lead Signal Listener đang có. Kết quả là giả thuyết, không phải khách đã xác nhận nhu cầu mua.",
+    mi_industry: "Ngành",
+    mi_region: "Khu vực",
+    mi_pain: "Nỗi đau cần tìm (để trống để tự khám phá)",
+    mi_web: "Tìm web qua SearXNG",
+    mi_listener: "Dùng tín hiệu Lead Signal Listener đã lưu",
+    mi_extract: "Trích xuất bài viết với Trafilatura",
+    mi_run: "Bắt đầu nghiên cứu",
+    mi_report: "Báo cáo nỗi đau và cơ hội",
+    mi_none: "Chưa có tín hiệu phù hợp. Hãy nhập thông tin và chạy nghiên cứu.",
+    mi_evidence: "bằng chứng",
+    mi_warning: "Điểm tín hiệu không chứng minh khách hàng muốn mua; cần xác minh nguồn và nhu cầu thực.",
+    mi_status: "Trạng thái",
+    mi_config: "SearXNG phải chạy tại 127.0.0.1:8080 (hoặc SEARXNG_URL) và bật JSON API.",
+    mi_refresh: "Làm mới báo cáo",
     tab_leads: "Khách hàng",
     tab_sources: "Nguồn theo dõi",
     tab_settings: "Cài đặt",
@@ -511,6 +567,23 @@ const I18N = {
     eb_token: "Treg API token",
   },
   en: {
+    tab_market: "Market research",
+    mi_title: "Pain points and opportunities",
+    mi_hint: "Research web and saved Lead Signal Listener records. Findings are hypotheses, not verified purchasing intent.",
+    mi_industry: "Industry",
+    mi_region: "Location",
+    mi_pain: "Pain to search (leave blank to discover)",
+    mi_web: "Web search via SearXNG",
+    mi_listener: "Use saved Lead Signal Listener records",
+    mi_extract: "Extract article text with Trafilatura",
+    mi_run: "Start research",
+    mi_report: "Pain and opportunity report",
+    mi_none: "No relevant signals found. Enter inputs and run research.",
+    mi_evidence: "sources",
+    mi_warning: "Signal scores are not proof of purchase intent. Verify sources and actual needs.",
+    mi_status: "Status",
+    mi_config: "SearXNG must be running on 127.0.0.1:8080 (or SEARXNG_URL) with JSON enabled.",
+    mi_refresh: "Refresh report",
     tab_leads: "Leads", tab_sources: "Listeners", tab_settings: "Settings",
     intro_focus: f => `${f} Review and follow up by score.`,
     intro_auto: (src, kws, more) => `Listening on ${src} for ${kws}${more ? ` and ${more} more` : ""}. Review and follow up by score.`,
@@ -570,6 +643,23 @@ const I18N = {
     open: "open ↗", q_prefix: "q: ", ago_h: n => `${n}h ago`, ago_d: n => `${n}d ago`,
   },
   zh: {
+    tab_market: "市场研究",
+    mi_title: "痛点与商机研究",
+    mi_hint: "从网站及已有线索提取信号。结果只是待验证的假设。",
+    mi_industry: "行业",
+    mi_region: "地区",
+    mi_pain: "搜索痛点（留空自动发现）",
+    mi_web: "通过 SearXNG 搜索",
+    mi_listener: "使用已保存的线索",
+    mi_extract: "用 Trafilatura 提取文章",
+    mi_run: "开始研究",
+    mi_report: "痛点与机会报告",
+    mi_none: "尚无相关信号，请输入条件开始研究。",
+    mi_evidence: "来源",
+    mi_warning: "信号分数不等于购买意向，请人工核实。",
+    mi_status: "状态",
+    mi_config: "请启动本地 SearXNG 并启用 JSON API。",
+    mi_refresh: "刷新报告",
     tab_leads: "线索", tab_sources: "监听配置", tab_settings: "设置",
     intro_focus: f => `${f}${/[A-Za-z0-9.,!?)"]$/.test(f) ? " " : ""}按分数逐条审核和跟进。`,
     intro_auto: (src, kws, more) => `正在 ${src} 上监听${kws}${more ? `等 ${more + 3} 个关键词` : ""}，按分数逐条审核和跟进。`,
@@ -667,7 +757,7 @@ function flash(el, text, ok = true) { el.textContent = text; el.className = "msg
 
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
   document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  ["leads", "sources", "settings"].forEach(t => $("tab-" + t).classList.toggle("hidden", t !== b.dataset.tab));
+  ["leads", "market", "sources", "settings"].forEach(t => $("tab-" + t).classList.toggle("hidden", t !== b.dataset.tab));
 });
 document.querySelectorAll(".lang button").forEach(b => b.onclick = async () => {
   if (b.dataset.lang === LANG) return;
@@ -675,7 +765,7 @@ document.querySelectorAll(".lang button").forEach(b => b.onclick = async () => {
   localStorage.setItem("sl_lang", LANG);
   applyI18n();
   // Re-render everything from cache first, so the page switches fully even if the server is unreachable.
-  renderConfig(); renderRows(); renderStatus(); renderBoard();
+  renderConfig(); renderRows(); renderStatus(); renderBoard(); loadMarketReport();
   // Server-side run logs and messages follow the UI language.
   await api("/api/config", {method: "POST", body: JSON.stringify({lang: LANG})}).catch(() => {});
   loadConfig().catch(() => {}); loadSignals().catch(() => {}); loadStatus().catch(() => {});
@@ -999,6 +1089,78 @@ $("refreshBtn").onclick = () => loadSignals();
 ["fSource","fPersona","fScope","fSort"].forEach(id => $(id).onchange = () => loadSignals());
 $("moreBtn").onclick = () => loadSignals(true);
 $("fQ").onkeydown = e => { if (e.key === "Enter") loadSignals(); };
+
+
+// Market Intelligence: isolated no-paid-API pipeline.
+let MARKET_RUNNING = false;
+function miText(id) { return document.getElementById(id); }
+async function loadMarketStatus() {
+  try {
+    const s = await api("/api/market/status");
+    MARKET_RUNNING = !!s.running;
+    miText("miRun").disabled = MARKET_RUNNING;
+    miText("miStage").textContent = s.stage || "idle";
+    miText("miProgress").textContent = [s.message,
+      "Đã lấy: " + (s.found || 0),
+      "Mới: " + (s.new_evidence || 0),
+      "Tín hiệu: " + (s.pain_matches || 0)].join(" · ");
+    miText("miErrors").textContent = (s.errors || []).map(e =>
+      typeof e === "string" ? e : ((e.query || "") + ": " + (e.error || ""))).join("\n");
+    return s;
+  } catch (e) {
+    miText("miProgress").textContent = e.message;
+    return null;
+  }
+}
+async function loadMarketReport() {
+  try {
+    const r = await api("/api/market/report");
+    const groups = r.opportunities || [];
+    miText("miResults").innerHTML = groups.length ? groups.map(g => {
+      const items = (g.evidence || []).slice(0, 20).map(e =>
+        '<div class="lead" style="grid-template-columns:1fr;gap:6px">' +
+        '<b><a href="' + safeUrl(e.url) + '" target="_blank" rel="noopener noreferrer">' +
+        esc(e.title || e.url) + '</a></b>' +
+        '<span class="meta">' + esc(e.source || "") + ' · ' +
+        esc(e.signal_score ?? 0) + '/100 · ' + esc((e.matched || []).join(", ")) + '</span>' +
+        '<div class="snippet open">' + esc(e.excerpt || "") + '</div></div>').join("");
+      return '<div class="card" style="margin-top:12px">' +
+        '<h2>' + esc(g.pain_category) + ' · ' +
+        esc(g.evidence_count) + ' ' + esc(T("mi_evidence")) + '</h2>' +
+        '<p class="desc">' + esc(g.opportunity_hypothesis || "") + '</p>' +
+        items + '</div>';
+    }).join("") : '<div class="empty"><b>' + esc(T("mi_none")) + '</b></div>';
+  } catch (e) {
+    miText("miResults").textContent = e.message;
+  }
+}
+miText("miRun").onclick = async () => {
+  const payload = {
+    industry: miText("miIndustry").value.trim(),
+    region: miText("miRegion").value.trim(),
+    pain: miText("miPain").value.trim(),
+    web: miText("miWeb").checked,
+    listener: miText("miListener").checked,
+    extract: miText("miExtract").checked
+  };
+  miText("miRunMessage").textContent = "";
+  try {
+    await api("/api/market/run", {method:"POST", body:JSON.stringify(payload)});
+    miText("miRunMessage").textContent = "Đã bắt đầu";
+    await loadMarketStatus();
+  } catch (e) { miText("miRunMessage").textContent = e.message; }
+};
+miText("miRefresh").onclick = () => loadMarketReport();
+let marketPrevRunning = false;
+async function marketPoll() {
+  if (miText("tab-market").classList.contains("hidden") && !MARKET_RUNNING) return;
+  const s = await loadMarketStatus();
+  if (s && (marketPrevRunning && !s.running)) await loadMarketReport();
+  marketPrevRunning = !!(s && s.running);
+}
+setInterval(marketPoll, 2500);
+loadMarketStatus();
+loadMarketReport();
 
 applyI18n();
 // Keep server-side log language in sync with the stored UI choice.
