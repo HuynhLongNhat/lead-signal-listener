@@ -1,6 +1,25 @@
 """Server-side messages (run log, token check, errors). UI strings live in static/index.html."""
 
 MESSAGES = {
+    "vi": {
+        "busy": "Đang có lượt chạy khác",
+        "skip_no_token": "[skip] {name} · {q}: chưa có Treg token",
+        "skip_disabled": "[skip] {name} · {q}: nguồn có phí đã tắt",
+        "skip_budget": "[skip] {name} · {q}: đã đạt ngân sách ${budget:.2f}",
+        "ok": "[ok] {name} · {q}: {pages} trang, lấy {got}, giữ {kept}, mới {new}",
+        "error": "[error] {name} · {q}: {err}",
+        "stop": "[stop] Token không hợp lệ hoặc không đủ số dư; dừng các lượt gọi còn lại",
+        "done": "[done] lấy {fetched}, mới {new}, {calls} lượt gọi, chi phí ${cost:.4f}",
+        "token_ok": "Token hợp lệ",
+        "token_bad": "Xác minh thất bại (HTTP {code})",
+        "token_net": "Không kết nối treg.to: {reason}",
+        "token_missing": "Chưa có token",
+        "http_401": "Thiếu hoặc sai token",
+        "http_402": "Hết số dư hoặc vượt giới hạn mỗi lượt gọi",
+        "http_429": "Quá giới hạn tần suất",
+        "http_503": "Dịch vụ tạm thời không sẵn sàng",
+        "http_other": "Yêu cầu thất bại",
+    },
     "en": {
         "busy": "A run is already in progress",
         "skip_no_token": "[skip] {name} · {q}: Treg token not set",
