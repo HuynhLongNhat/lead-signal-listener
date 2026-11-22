@@ -9,6 +9,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from .i18n import t
+from market_intelligence.service import ResearchController
 from . import generic
 from .scoring import score_signal
 from .treg_client import BASE_URL, auth_headers
@@ -90,6 +91,10 @@ def make_handler(app):
                     return self._send(404, {"error": "not found"})
                 with open(full, "rb") as f:
                     return self._send(200, f.read(), STATIC_TYPES[ext], {"Cache-Control": "max-age=86400"})
+            if u.path == "/api/market/status":
+                return self._send(200, app.market.status())
+            if u.path == "/api/market/report":
+                return self._send(200, app.market.report())
             if u.path == "/api/config":
                 cfg = app.config.public()
                 cfg["project_dir"] = PROJECT_DIR  # used by the "let an agent set it up" prompt
@@ -135,6 +140,11 @@ def make_handler(app):
             except (ValueError, json.JSONDecodeError) as e:
                 return self._send(400, {"error": str(e)})
             try:
+                if u.path == "/api/market/run":
+                    try:
+                        return self._send(202, app.market.start(body))
+                    except RuntimeError as e:
+                        return self._send(409, {"error": str(e)})
                 if u.path == "/api/config":
                     app.config.update(body)
                     app.reschedule()
@@ -178,6 +188,7 @@ def make_handler(app):
 class App:
     def __init__(self, config, store, runner):
         self.config, self.store, self.runner = config, store, runner
+        self.market = ResearchController(os.path.dirname(store.db.execute("PRAGMA database_list").fetchone()[2]))
         self.next_run = None
         self._timer_lock = threading.Lock()
         self._stop = threading.Event()

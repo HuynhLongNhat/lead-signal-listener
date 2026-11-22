@@ -48,3 +48,10 @@ Nếu chưa cài Trafilatura, dùng `--no-extract` để đọc snippet kết qu
 - Nhóm theo từ khóa, **không phải semantic clustering**. Chấm điểm *tín hiệu*, không phải xác suất mua.
 - Không có API tự động tìm bài Facebook/Zalo miễn phí; dữ liệu LSL chỉ là những gì bạn đã thu thập hợp lệ.
 - Dữ liệu được lưu tại `data/market_intelligence.db`; không lưu API keys.
+
+
+## Giao diện nghiên cứu thị trường (E2E)
+
+Mở `python app.py` → tab **Nghiên cứu thị trường**. Nhập ngành, khu vực, có thể nhập nỗi đau hoặc để trống. Bật Web và/hoặc dữ liệu Lead Signal Listener đã lưu, chọn trích xuất nội dung, bấm **Bắt đầu nghiên cứu**. Trạng thái cập nhật tự động và báo cáo được lưu trong `data/market_intelligence.db`.
+
+Lưu ý: `SEARXNG_URL` phải chạy cục bộ và có JSON API; cần `python -m pip install trafilatura` để trích xuất. Web cần kết nối mạng; đầu ra chỉ là tín hiệu sơ bộ, không phải lead đã xác minh. Nếu thiếu SearXNG, UI hiển thị lỗi và không tạo bằng chứng giả. Chế độ Lead Signal Listener chỉ đọc SQLite, không tự gọi API trả phí. Báo cáo hiển thị dữ liệu tích lũy của các lần chạy.
